@@ -39,7 +39,12 @@
       await game.pf2e.ConditionManager.updateConditionValue(token.actor.data.items.find((x) => x.name === conditionType.name)._id, token, 1);
 
       chatMsg = `${actor.name} sfodera lo spadone!`
-AudioHelper.play({src: "sounds/effects/spada_estrazione.mp3", volume: 0.8, autoplay: true, loop: false}, true);
+      AudioHelper.play({
+        src: "sounds/effects/spada_estrazione.mp3",
+        volume: 0.8,
+        autoplay: true,
+        loop: false
+      }, true);
 
 
     }
