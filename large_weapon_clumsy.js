@@ -17,6 +17,7 @@
         "_id": weapon._id,
         "data.equipped.value": false
       });
+      actor.setRollOption('all', 'oversized', false);
 
       let conditionValue = (token.actor.data.items.find((x) => x.name === conditionType.name)) ? 0 : 1; // set the value of a valued condition here
       if (conditionValue) await game.pf2e.ConditionManager.addConditionToToken(conditionType, token);
@@ -31,16 +32,20 @@
         "_id": weapon._id,
         "data.equipped.value": true
       });
+      actor.setRollOption('all', 'oversized', true);
 
       let conditionValue = (token.actor.data.items.find((x) => x.name === conditionType.name)) ? 0 : 1; // set the value of a valued condition here
       if (conditionValue) await game.pf2e.ConditionManager.addConditionToToken(conditionType, token);
       await game.pf2e.ConditionManager.updateConditionValue(token.actor.data.items.find((x) => x.name === conditionType.name)._id, token, 1);
 
-      chatMsg = `${actor.name} sfodera lo spadone! Aaarghhh!`
+      chatMsg = `${actor.name} sfodera lo spadone!`
+AudioHelper.play({src: "sounds/effects/spada_estrazione.mp3", volume: 0.8, autoplay: true, loop: false}, true);
+
 
     }
 
     actor.updateEmbeddedEntity("OwnedItem", updates);
+
 
   } else {
     chatMsg = `${game.user.name} has no assigned character.`;
